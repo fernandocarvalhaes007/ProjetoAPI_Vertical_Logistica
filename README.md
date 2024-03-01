@@ -25,7 +25,7 @@ git clone  https://github.com/fernandocarvalhaes007/ApiLogistica
 ```
 [ x ] - Criar servidor Python com o Flask
 [ x ] - Criar rota de upload de arquivo POST
-[ ] - Criar classe de entidade com os seguites atributos:
+[ x ] - Criar função para ler os seguites atributos:
 
 |-----------------------------------------------------------|     
 | Campo             | Tamanho | Tipo                        |
@@ -37,6 +37,8 @@ git clone  https://github.com/fernandocarvalhaes007/ApiLogistica
 | valor_do_produto  | 12      | decimal                     |
 | data_compra       | 8       | numérico  (format yyyymmdd) |
 |-----------------------------------------------------------|   
+
+[ x ] - Criar formatar os dados para int, float e date
 
 [ ] - Adcionar a lógica de leitura de arquivo
 [ ] - Serilializar os dados em JSON e retornar na chamada
