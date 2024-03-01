@@ -23,8 +23,8 @@ git clone  https://github.com/fernandocarvalhaes007/ApiLogistica
 ## Objetivos
 
 ```
-[ ] - Criar servidor Python com o Flask
-[ ] - Criar rota de upload de arquivo POST
+[ x ] - Criar servidor Python com o Flask
+[ x ] - Criar rota de upload de arquivo POST
 [ ] - Criar classe de entidade com os seguites atributos:
 
 |-----------------------------------------------------------|     
