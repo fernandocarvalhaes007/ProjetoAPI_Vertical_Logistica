@@ -25,6 +25,7 @@ git clone  https://github.com/fernandocarvalhaes007/ApiLogistica
 ```
 [ x ] - Criar servidor Python com o Flask
 [ x ] - Criar rota de upload de arquivo POST
+[ x ] - Criar classe e um construtor com base nos atributos informados
 [ x ] - Criar função para ler os seguites atributos:
 
 |-----------------------------------------------------------|     
