@@ -40,8 +40,8 @@ git clone  https://github.com/fernandocarvalhaes007/ApiLogistica
 
 [ x ] - Criar formatar os dados para int, float e date
 
-[ ] - Adcionar a lógica de leitura de arquivo
-[ ] - Serilializar os dados em JSON e retornar na chamada
+[ x ] - Adcionar a lógica de leitura de arquivo
+[ x ] - Serilializar os dados em JSON e retornar na chamada
 
 ```
 
