@@ -1,4 +1,5 @@
 from datetime import datetime
+from app.entidade import Order
 
 def convert_to_date(date_str):
     return datetime.strptime(date_str, '%Y%m%d').strftime('%d/%m/%Y') if date_str else None
@@ -12,4 +13,4 @@ def parse_line(line):
     date_str = line[87:95].strip()
     date = convert_to_date(date_str)
     
-    return user_id, name, order_id, product_id, value, date
+    return Order(user_id, name, order_id, product_id, value, date) 
