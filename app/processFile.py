@@ -46,6 +46,7 @@ def process_orders(input_file):
 
 
 def process_upload_data(file_path):
+    output_lines = file_path.readlines()
     input_files = [file_path]
     orders_data_list = []
 
