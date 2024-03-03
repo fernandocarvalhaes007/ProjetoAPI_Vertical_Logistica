@@ -1,59 +1,51 @@
 import json
 from atributos import parse_line
 
-def process_orders(input_file):
+def process_order_line(input_line, users):
+    user_id, name, order_id, product_id, value, date = parse_line(input_line)
+
+    if user_id not in users:
+        users[user_id] = {
+            "user_id": user_id,
+            "name": name,
+            "orders": {}
+        }
+
+    if order_id not in users[user_id]["orders"]:
+        users[user_id]["orders"][order_id] = {
+            "order_id": order_id,
+            "total": 0,
+            "date": date,
+            "products": {}
+        }
+
+    if product_id not in users[user_id]["orders"][order_id]["products"]:
+        users[user_id]["orders"][order_id]["products"][product_id] = {
+            "product_id": product_id,
+            "value": 0
+        }
+
+    users[user_id]["orders"][order_id]["products"][product_id]["value"] += value
+    users[user_id]["orders"][order_id]["total"] += value
+
+def process_upload_data(file_lines):
     users = {}
-    with open(input_file, 'r') as file:
-        for line in file:
-            user_id, name, order_id, product_id, value, date = parse_line(line)
-            
-            if user_id not in users:
-                users[user_id] = {
-                    "user_id": user_id,
-                    "name": name,
-                    "orders": {}
-                }
-                
-            if order_id not in users[user_id]["orders"]:
-                users[user_id]["orders"][order_id] = {
-                    "order_id": order_id,
-                    "total": 0,
-                    "date": date,
-                    "products": {}
-                }
-                
-            if product_id not in users[user_id]["orders"][order_id]["products"]:
-                users[user_id]["orders"][order_id]["products"][product_id] = {
-                    "product_id": product_id,
-                    "value": 0
-                }
-                
-            users[user_id]["orders"][order_id]["products"][product_id]["value"] += value
-            users[user_id]["orders"][order_id]["total"] += value
+
+    for input_line in file_lines:
+        try:
+            process_order_line(input_line, users)
+        except Exception as e:
+            print(f"Erro ao processar a linha do pedido: {e}")
 
     output_data = []
     for user in users.values():
         user_orders = list(user["orders"].values())
         for order in user_orders:
-            order["total"] = f"R$ {order['total']:.2f}".replace('.',',')
+            order["total"] = f"R$ {order['total']:.2f}".replace('.', ',')
             order["products"] = list(order["products"].values())
             for product in order["products"]:
-             product["value"] = f"R$ {product['value']:.2f}".replace('.', ',')
+                product["value"] = f"R$ {product['value']:.2f}".replace('.', ',')
         user["orders"] = user_orders
         output_data.append(user)
 
-    return output_data
-
-
-def process_upload_data(file_path):
-    output_lines = file_path.readlines()
-    input_files = [file_path]
-    orders_data_list = []
-
-    for i, input_file in enumerate(input_files):
-        orders_data = process_orders(input_file)
-        orders_data_list.append(orders_data)
-
-        output_str = json.dumps(orders_data, indent=2)
-
-    return output_str
+    return json.dumps(output_data, indent=2)

@@ -1,4 +1,3 @@
-
 class Order:
     def __init__(self, user_id, name, order_id, product_id, value, date):
         self.user_id = user_id
