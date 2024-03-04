@@ -12,7 +12,7 @@ def upload():
             return 'Nenhum arquivo enviado', 400
 
         file = request.files['data']
-    
+
         file_lines = [line.decode('utf-8') for line in file]
 
     
@@ -23,5 +23,6 @@ def upload():
         print(f"Erro ao processar o arquivo enviado: {e}")
         return "Ocorreu um erro ao processar o arquivo enviado", 500
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=5000, host='localhost', debug=True)
